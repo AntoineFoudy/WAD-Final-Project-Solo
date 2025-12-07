@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <%- include ("./partials/head.ejs")%>
 <body class="container">
@@ -6,7 +5,15 @@
         <%- include ("./partials/nav.ejs")%>
     </div>
     <div class="wrapper">
-        <h1>Sell your Vegetable here !</h1>
+        <div>
+            <h1>Sell your Vegetable here !</h1>
+            <div>
+                <%- include ("./partials/options.ejs")%>
+            </div>
+            <div>
+                <button>Sell</button>
+            </div>
+        </div> 
     </div>
 </body>
 </html>
