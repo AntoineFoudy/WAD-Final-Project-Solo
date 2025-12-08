@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 // express set up
 const app = express();
 app.set("view engine", "ejs");
-app.use(express.static("public"))
+app.use(express.static("public"));
+app.use(express.json());
 
 
 
@@ -30,4 +31,10 @@ app.get("/buyer", (request, response) => {response.render("buyer")});
 app.get("/found", (request, response) => {response.render("found")});
 app.get("/looking", (request, response) => {response.render("looking")});
 
+// Setting post up
+app.post("/api", (request, response) => {console.log(request.body)});
+
+
+
+// route not found
 app.use((request, response) => {response.status(404).render("404")});
