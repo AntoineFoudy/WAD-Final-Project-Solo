@@ -6,7 +6,7 @@ sell_button.addEventListener("click", send_data_sell);
 
 // depending on what button is press function is ran for buyer or seller
 function send_data_buy() {
-    let buyer = "True";
+    let buyer = "true";
     let name = document.getElementById("get_name").value;
     let email = document.getElementById("get_email").value;
     let veg = document.getElementById("get_veg").value;
@@ -22,7 +22,7 @@ function send_data_buy() {
 }
 
 function send_data_sell() {
-    let buyer = "False";
+    let buyer = "false";
     let name = document.getElementById("get_name").value;
     let email = document.getElementById("get_email").value;
     let veg = document.getElementById("get_veg").value;
