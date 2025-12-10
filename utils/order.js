@@ -5,7 +5,10 @@ const order_schema = new mongoose.Schema({
     name: String,
     email: String,
     veg: String,
-    amount: Number,
+    amount: {
+        type: Number,
+        min: 1,
+    },
     county: String,
     delivery: Boolean
 })

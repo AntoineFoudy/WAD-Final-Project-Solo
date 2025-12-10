@@ -9,13 +9,43 @@
         <div>
             <h1>We found someone maching your description</h1>
         </div>
-        <h1>Seller</h1>
-        <div id="seller_info">
-
-        </div>
         <h1>Buyer</h1>
         <div id="buyer_info">
-
+            <% if(found_order_document.buyer == false) { %>
+                <p><%= found_order_document.name %></p>
+                <p><%= found_order_document.email %></p>
+                <p><%= found_order_document.veg %></p>
+                <p><%= found_order_document.amount %></p>
+                <p><%= found_order_document.county %></p>
+                <p><%= found_order_document.delivery %></p>
+           <% } %>
+           <% if(found_order_document.buyer == true) { %>
+                <p><%= found_matching_document.name %></p>
+                <p><%= found_matching_document.email %></p>
+                <p><%= found_matching_document.veg %></p>
+                <p><%= found_matching_document.amount %></p>
+                <p><%= found_matching_document.county %></p>
+                <p><%= found_matching_document.delivery %></p>
+            <% } %>
+        </div>
+        <h1>Seller</h1>
+        <div id="seller_info">
+            <% if(found_order_document.buyer == true) { %>
+                <p><%= found_order_document.name %></p>
+                <p><%= found_order_document.email %></p>
+                <p><%= found_order_document.veg %></p>
+                <p><%= found_order_document.amount %></p>
+                <p><%= found_order_document.county %></p>
+                <p><%= found_order_document.delivery %></p>
+           <% } %>
+           <% if(found_order_document.buyer == false) { %>
+                <p><%= found_matching_document.name %></p>
+                <p><%= found_matching_document.email %></p>
+                <p><%= found_matching_document.veg %></p>
+                <p><%= found_matching_document.amount %></p>
+                <p><%= found_matching_document.county %></p>
+                <p><%= found_matching_document.delivery %></p>
+            <% } %> 
         </div>
     </div>
 </body>

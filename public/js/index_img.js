@@ -12,4 +12,4 @@ function slide_show() {
     display_img.innerHTML= `<img src="${image_choice[current_img]}" width="200" hight="200">`;
 }
 
-setInterval(slide_show, 8000)
+setInterval(slide_show, 3000)

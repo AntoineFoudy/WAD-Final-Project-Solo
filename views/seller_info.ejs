@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include ("./partials/head.ejs")%>
+<body class="container">
+    <div>
+        <%- include ("./partials/nav.ejs")%>
+    </div>
+    <div class="wrapper">
+        <h1>See list of Sellers and their stock</h1>
+        <% if(found_seller_data.length) {found_seller_data.forEach(found_seller_data=> { %>
+            <h3>Seller Data</h3>
+            <p><%= found_seller_data.name %> </p>
+            <p><%= found_seller_data.email %> </p>
+            <p><%= found_seller_data.veg %> </p>
+            <p><%= found_seller_data.amount %> </p>
+            <p><%= found_seller_data.county %> </p>
+        <% });} else { %>
+            <p>Sorry there is no Sellers</p>
+        <% } %>
+
+    </div>
+    <script src="/js/get_seller_data.js"></script>
+</body>
+</html>
