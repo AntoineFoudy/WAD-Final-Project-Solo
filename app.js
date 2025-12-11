@@ -46,7 +46,7 @@ app.post("/api", async(request, response) => {
         const order_document = await new order(request.body);
         let matching_document = await order_document;
 
-        // Changing the buyer to seller and visa versa to check if there is an order that matches the new order
+        // Changing the buyer to seller and visa versa to check if there is an order that matches the needs of the new order
         if(matching_document.buyer == true) {
             matching_document.buyer = false
         }

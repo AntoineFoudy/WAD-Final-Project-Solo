@@ -1,6 +1,7 @@
 const sell_button = document.getElementById("sell_button");
 const buy_button = document.getElementById("buy_button");
 
+// checks to see what page is active depending on what button ID is on the page
 if(buy_button) {
     buy_button.addEventListener("click", send_data);
 };
