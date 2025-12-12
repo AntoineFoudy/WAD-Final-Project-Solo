@@ -21,7 +21,7 @@ function send_data() {
     let name = document.getElementById("get_name").value.trim();
     let email = document.getElementById("get_email").value.trim();
     let veg = document.getElementById("get_veg").value.trim();
-    let amount = document.getElementById("get_amount").value.trim();
+    let amount = document.getElementById("get_amount").valueAsNumber;
     let county = document.getElementById("get_county").value.trim();
     let delivery = document.getElementById("get_delivery").value.trim();
 

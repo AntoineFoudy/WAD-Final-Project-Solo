@@ -56,7 +56,7 @@ app.post("/api", async(request, response) => {
         matching_document = await order.findOne({
             buyer: matching_document.buyer,
             veg: order_document.veg,
-            amount: {$lte: order_document.amount},
+            amount: {$gte: order_document.amount},
             county: order_document.county,
             delivery: order_document.delivery
         }).exec();
@@ -80,15 +80,15 @@ app.post("/api", async(request, response) => {
             response.redirect("found");
 
             await matching_document.updateOne(
-                {_id: matching_document._id},
                 {$inc: {amount: - order_document.amount}}
             )
         }
+        // load updated maching_document from collection to memory
+        matching_document = await order.findOne({_id: matching_document._id}).exec();
         // If the amount is <= 0 delete the document
         if(matching_document.amount <= 0) {
-            await order.deleteOne({_id: matching_document._id})
+            await matching_document.deleteOne().exec();
         }
-
     }
     catch(e) {
         console.log(e)
