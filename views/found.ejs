@@ -11,40 +11,24 @@
         </div>
         <h1>Buyer</h1>
         <div id="buyer_info">
-            <% if(found_order_document.buyer == false) { %>
-                <p><%= found_order_document.name %></p>
-                <p><%= found_order_document.email %></p>
-                <p><%= found_order_document.veg %></p>
-                <p><%= found_order_document.amount %></p>
-                <p><%= found_order_document.county %></p>
-                <p><%= found_order_document.delivery %></p>
+            <% if(found_order_document) { %>
+                <p>Name: <%= found_order_document.user.name %></p>
+                <p>Contact Info: <%= found_order_document.user.email %></p>
+                <p>Vegtable Type: <%= found_order_document.veg %></p>
+                <p>Quantity: <%= found_order_document.amount %></p>
+                <p>Location: <%= found_order_document.county %></p>
+                <p>Delivery: <%= found_order_document.delivery %></p>
            <% } %>
-           <% if(found_order_document.buyer == true) { %>
-                <p><%= found_matching_document.name %></p>
-                <p><%= found_matching_document.email %></p>
-                <p><%= found_matching_document.veg %></p>
-                <p><%= found_matching_document.amount %></p>
-                <p><%= found_matching_document.county %></p>
-                <p><%= found_matching_document.delivery %></p>
-            <% } %>
         </div>
         <h1>Seller</h1>
         <div id="seller_info">
-            <% if(found_order_document.buyer == true) { %>
-                <p><%= found_order_document.name %></p>
-                <p><%= found_order_document.email %></p>
-                <p><%= found_order_document.veg %></p>
-                <p><%= found_order_document.amount %></p>
-                <p><%= found_order_document.county %></p>
-                <p><%= found_order_document.delivery %></p>
-           <% } %>
-           <% if(found_order_document.buyer == false) { %>
-                <p><%= found_matching_document.name %></p>
-                <p><%= found_matching_document.email %></p>
-                <p><%= found_matching_document.veg %></p>
-                <p><%= found_matching_document.amount %></p>
-                <p><%= found_matching_document.county %></p>
-                <p><%= found_matching_document.delivery %></p>
+           <% if(found_order_document.buyer) { %>
+                <p>Name: <%= found_matching_document.user.name %></p>
+                <p>Contact Info: <%= found_matching_document.user.email %></p>
+                <p>Vegtable Type: <%= found_matching_document.veg %></p>
+                <p>Quantity: <%= found_matching_document.amount %></p>
+                <p>Location: <%= found_matching_document.county %></p>
+                <p>Delivery: <%= found_matching_document.delivery %></p>
             <% } %> 
         </div>
     </div>

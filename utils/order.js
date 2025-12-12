@@ -2,8 +2,10 @@ const mongoose = require("mongoose");
 
 const order_schema = new mongoose.Schema({
     buyer: Boolean,
-    name: String,
-    email: String,
+    user: {
+        name: String,
+        email: String
+    },
     veg: String,
     amount: {
         type: Number,

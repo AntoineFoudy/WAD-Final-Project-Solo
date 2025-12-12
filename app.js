@@ -44,7 +44,7 @@ app.post("/api", async(request, response) => {
     console.log(request.body);
     try {
         const order_document = await new order(request.body);
-        let matching_document = await order_document;
+        let matching_document = await new order(request.body);
 
         // Changing the buyer to seller and visa versa to check if there is an order that matches the needs of the new order
         if(matching_document.buyer == true) {
@@ -67,7 +67,7 @@ app.post("/api", async(request, response) => {
             // try catch because mongoose validation will crash the server
             try {
                 await order_document.save()
-                console.log("order saved");
+                console.log("order saved " + order_document);
                 response.redirect("looking");
                 console.log("We got here")
             } catch (error) {
@@ -75,20 +75,35 @@ app.post("/api", async(request, response) => {
             }
         }
         else{
-            found_order_document = {buyer: order_document.buyer, name: order_document.name, email: order_document.email, veg: order_document.veg, amount: order_document.amount, county: order_document.county, delivery: order_document.delivery};
-            found_matching_document = {buyer: matching_document.buyer, name:  matching_document.name, email: matching_document.email, veg: matching_document.veg, amount: order_document.amount, county: matching_document.county, delivery: matching_document.delivery};
+            // Passing the data to be past with routing to user
+            if(order_document.buyer == true) {
+                found_order_document = {buyer: order_document.buyer, user: { name: order_document.user.name, email: order_document.user.email }, veg: order_document.veg, amount: order_document.amount, county: order_document.county, delivery: order_document.delivery};
+            }
+            else {
+                found_matching_document = {buyer: matching_document.buyer, user: { name: matching_document.user.name, email: matching_document.user.email }, veg: matching_document.veg, amount: order_document.amount, county: matching_document.county, delivery: matching_document.delivery};
+            }
+            if(order_document.buyer == false) {
+                found_order_document = {buyer: order_document.buyer, user: { name: order_document.user.name, email: order_document.user.email }, veg: order_document.veg, amount: order_document.amount, county: order_document.county, delivery: order_document.delivery};
+            }
+            else {
+                found_matching_document = {buyer: matching_document.buyer, user: { name: matching_document.user.name, email: matching_document.user.email }, veg: matching_document.veg, amount: order_document.amount, county: matching_document.county, delivery: matching_document.delivery};
+            }
             response.redirect("found");
 
+            // updating amount based on how many veg the buy bought
             await matching_document.updateOne(
                 {$inc: {amount: - order_document.amount}}
             )
         }
-        // load updated maching_document from collection to memory
-        matching_document = await order.findOne({_id: matching_document._id}).exec();
-        // If the amount is <= 0 delete the document
-        if(matching_document.amount <= 0) {
+        if(matching_document) {
+            // load updated maching_document from collection to memory
+            matching_document = await order.findOne({_id: matching_document._id}).exec();
+            // If the amount is <= 0 delete the document
+            if(matching_document.amount <= 0) {
             await matching_document.deleteOne().exec();
         }
+        }
+        
     }
     catch(e) {
         console.log(e)
