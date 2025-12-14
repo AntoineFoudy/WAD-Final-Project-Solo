@@ -3,3 +3,8 @@
     color: white;
     background: black;
 }
+
+.nav_bar {
+    background-color: white;
+    overflow: auto;
+}
